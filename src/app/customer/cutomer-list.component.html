@@ -1,0 +1,25 @@
+<div class="container table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+      <td>
+        Name
+      </td>
+      <td>Email</td>
+      <td>Phone</td>
+      <td>Gender</td>
+      <td>Date of Birth</td>
+    </tr>
+    
+    </thead>
+    <tbody>
+      <tr *ngFor = "let cust of customers">
+        <td>{{cust.name}}</td>
+        <td>{{cust.email}}</td>
+        <td>{{cust.phone}}</td>
+        <td>{{cust.gender}}</td>
+        <td>{{cust.dob}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
