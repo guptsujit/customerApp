@@ -1,14 +1,29 @@
 <main class="sizing">
-  <input type="text" name = "firstname" [(ngModel)]="firstname">
-  <app-child [datafromparent]= "firstname" [datafromparent2]="userDetail"></app-child>
+  <input type="text" name="firstname1" [(ngModel)]="firstname1" test (ngModelChange)="test($event)">
+  {{firstname1}}
+  
+  <input type="text" name="firstname2" [value]="firstname2" (input)="firstname2=$event.target.value.toUpperCase()">
+   {{firstname2}}
+
+  <app-child [datafromparent]= "firstname" [datafromparent2]="userDetail">
+    
+    <div class="div1"> div 1 content</div><div class="div2">div 2 content</div>
+  </app-child>
   <input type="button" value="changeName" (click)="changename()">
-  {{message}}
+  {{message}}  
+  <input type="button" value="Count Number" (click)="countNumber()">
+  {{count}}
   <div class="banner">
-   <div class="container">
+   <div class="container" >
     <div class="row">
       <div class="col-lg-7 col-sm-8 col-xs-12">
-       <h1>This is a home page.</h1>
-  
+       <h1 id="headingone" class="sujit" [ngClass]="{sujit1:true}">This is a home page 1.</h1>
+       <h1 id="headingone">This is a home page 2.</h1>
+       <p>Multiplier: {{2 | multiplier:10:20}}
+
+        {{exampleAsync | async}}
+       </p>
+     
         <div class="search-large">
           <div class="input-group">
             <input type="text" class="form-control input-lg" placeholder="Search">

@@ -1,26 +1,42 @@
-import { Component, OnInit, AfterContentInit, AfterViewChecked,OnChanges,OnDestroy } from '@angular/core';
+import { Component, OnInit,SimpleChanges,Input, AfterContentInit,
+   AfterViewChecked,OnChanges,OnDestroy,ViewEncapsulation,ChangeDetectionStrategy } from '@angular/core';
 import {OrderService} from '../order/order.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Observable, Subject,BehaviorSubject,ReplaySubject } from 'rxjs';
-
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-home',
+ // changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  //encapsulation:ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit, AfterContentInit, AfterViewChecked,OnChanges,OnDestroy {
 userDetail : any = {email:"sujitk2@chetu.com",age:20};
-firstname : string = "sujit";
+@Input()
+firstname1 : string;
+firstname2 : string = "sujit2";
 data : any;
 subscription: Subscription;
 message: any;
+exampleAsync :Promise<string>;
+exampleAsync2 :Observable<any>;
+count : any
 
-  constructor(private _orderservice:OrderService) {
-    
+// Since store type is generic so we will have to pass generic argumnet here
+// otherwise it will give error
+  constructor(private _orderservice:OrderService,private store : Store<{}>) {
+   
    }
 
   ngOnInit() {
+
+   this.store.select('customer').subscribe((obj)=>{
+    this.count =  obj.count;
+    });
+
+
    // Example behaviour subject 
   let sub = new BehaviorSubject<string>("first");
    sub.next("second");
@@ -44,6 +60,20 @@ rsub.subscribe((rdata)=>{
   console.log(rdata);
 });
     this.getdata();
+
+
+    this.exampleAsync = new Promise((resolve,reject)=>{
+      return resolve("Async promise example");
+    })
+  
+    this.exampleAsync2 = new Observable((obserber)=>{
+    
+       obserber.next("Hello observable async pipe");
+       
+    })
+    console.log(this.exampleAsync2);
+
+
   }
   
   ngAfterContentInit() {
@@ -52,8 +82,9 @@ rsub.subscribe((rdata)=>{
   ngAfterViewChecked() {
 
   }
-  ngOnChanges(){
-
+  ngOnChanges(obj:SimpleChanges){
+    alert(1);
+     console.log(obj);
   }
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
@@ -61,16 +92,12 @@ rsub.subscribe((rdata)=>{
 }
   changename(){
  
-
   let obj = Object.assign({},this.userDetail);
-
   obj.email = "harshl@chetu.com";
   this.userDetail = obj;
-
+  this.userDetail.email = "sujitk4@chetu.com";
   }
-  ngAfterContentChecked(){
-    //console.log("ngAfterContentCheckedparent");
-    }
+ 
  getdata(){
 this.subscription =this._orderservice.sendData().subscribe((data)=>{
   this.message = data;
@@ -79,5 +106,12 @@ this.subscription =this._orderservice.sendData().subscribe((data)=>{
 });
 
  }
+ test(data){
+  console.log(data);
+ }
 
+countNumber(){
+  this.store.dispatch({type:"ADD",number:3});
+}
+ 
 }

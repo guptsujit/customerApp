@@ -13,13 +13,14 @@
     
     </thead>
     <tbody>
-      <tr *ngFor = "let cust of customers">
+      <tr *ngFor = "let cust of customers; trackBy:trackItems ">
         <td>{{cust.name}}</td>
         <td>{{cust.email}}</td>
         <td>{{cust.phone}}</td>
         <td>{{cust.gender}}</td>
         <td>{{cust.dob}}</td>
       </tr>
+      <button class="btn btn-info" (click)="getItems()">Refresh</button>
     </tbody>
   </table>
 </div>

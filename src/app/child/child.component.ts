@@ -21,7 +21,7 @@ export class ChildComponent implements OnInit,OnChanges,DoCheck,AfterContentInit
     console.log(this.datafromparent2);
   }
   ngDoCheck(){
-    //console.log(this.datafromparent2);
+    console.log(this.datafromparent2);
   }
  ngAfterContentInit(){
   //console.log("ngAfterContentInit");
