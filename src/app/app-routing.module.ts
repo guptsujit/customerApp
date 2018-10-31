@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-
+import { NgZoneDemoComponent } from './ng-zone-demo/ng-zone-demo.component';
 const routes: Routes = [
   {path:'',component: HomeComponent},
   {path:'home',component: HomeComponent},
+  {path:'zonedemo',component: NgZoneDemoComponent},
   {
     path: 'customerlist',
     //loadChildren: './customer/customer.module#CustomerModule'

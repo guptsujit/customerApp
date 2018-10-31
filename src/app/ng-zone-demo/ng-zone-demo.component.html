@@ -1,0 +1,14 @@
+
+  <h2>Demo: NgZone</h2>
+
+<p>Progress: {{progress}}%</p>
+<p *ngIf="progress >= 100">Done processing {{label}} of Angular zone!</p>
+
+<p>Count: {{count}}%</p>
+
+
+<button (click)="processWithinAngularZone()">Process within Angular zone</button>
+<button (click)="processOutsideOfAngularZone()">Process outside of Angular zone</button>
+
+<button (click)="processWithinZone()">Process within Angular zone 2</button>
+<button (click)="processOutsideZone()">Process outside of Angular zone 2</button>

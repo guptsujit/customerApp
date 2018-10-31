@@ -1,5 +1,5 @@
 import { Component, OnInit,SimpleChanges,Input, AfterContentInit,
-   AfterViewChecked,OnChanges,OnDestroy,ViewEncapsulation,ChangeDetectionStrategy } from '@angular/core';
+   AfterViewChecked,OnChanges,OnDestroy,ViewEncapsulation,ChangeDetectionStrategy ,NgZone} from '@angular/core';
 import {OrderService} from '../order/order.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Observable, Subject,BehaviorSubject,ReplaySubject } from 'rxjs';
@@ -10,7 +10,7 @@ import { Store } from '@ngrx/store';
  // changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  //encapsulation:ViewEncapsulation.None
+  encapsulation:ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit, AfterContentInit, AfterViewChecked,OnChanges,OnDestroy {
 userDetail : any = {email:"sujitk2@chetu.com",age:20};

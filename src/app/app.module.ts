@@ -10,6 +10,7 @@ import { ChildComponent } from './child/child.component';
 import { MultiplierPipe } from './home/multiplier.pipe';
 import {StoreModule} from '@ngrx/store';
 import {customerReducer} from './home/customer-reducer';
+import { NgZoneDemoComponent } from './ng-zone-demo/ng-zone-demo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +19,7 @@ import {customerReducer} from './home/customer-reducer';
     HomeComponent,
     ChildComponent,
     MultiplierPipe,
+    NgZoneDemoComponent,
   ],
   imports: [
     BrowserModule,
