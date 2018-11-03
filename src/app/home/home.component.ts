@@ -1,9 +1,15 @@
 import { Component, OnInit,SimpleChanges,Input, AfterContentInit,
-   AfterViewChecked,OnChanges,OnDestroy,ViewEncapsulation,ChangeDetectionStrategy ,NgZone} from '@angular/core';
+   AfterViewChecked,OnChanges,OnDestroy,ViewEncapsulation,AfterViewInit,
+   ChangeDetectionStrategy ,NgZone,ViewChild,ViewChildren,ContentChild,
+   ContentChildren,QueryList,ElementRef,AfterContentChecked
+  } from '@angular/core';
 import {OrderService} from '../order/order.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Observable, Subject,BehaviorSubject,ReplaySubject } from 'rxjs';
 import { Store } from '@ngrx/store';
+
+
+
 
 @Component({
   selector: 'app-home',
@@ -12,7 +18,8 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./home.component.css'],
   encapsulation:ViewEncapsulation.None
 })
-export class HomeComponent implements OnInit, AfterContentInit, AfterViewChecked,OnChanges,OnDestroy {
+export class HomeComponent implements OnInit, AfterContentInit, AfterViewChecked,
+OnChanges,OnDestroy,AfterViewInit,AfterContentChecked {
 userDetail : any = {email:"sujitk2@chetu.com",age:20};
 @Input()
 firstname1 : string;
@@ -23,7 +30,10 @@ message: any;
 exampleAsync :Promise<string>;
 exampleAsync2 :Observable<any>;
 count : any
-
+@ViewChildren('child1') child1:any
+@ContentChildren('contentChild1') allFriendsRef: QueryList<ElementRef> ;
+@ViewChild('contentChild2') nameRef: any;
+//@ViewChild('test') child2:any
 // Since store type is generic so we will have to pass generic argumnet here
 // otherwise it will give error
   constructor(private _orderservice:OrderService,private store : Store<{}>) {
@@ -31,7 +41,7 @@ count : any
    }
 
   ngOnInit() {
-
+  
    this.store.select('customer').subscribe((obj)=>{
     this.count =  obj.count;
     });
@@ -77,10 +87,20 @@ rsub.subscribe((rdata)=>{
   }
   
   ngAfterContentInit() {
-
+    
+    console.log(this.nameRef);
+    console.log(this.allFriendsRef);
   }
+  ngAfterContentChecked() {
+    console.log(this.allFriendsRef);
+  }
+  ngAfterViewInit() {
+    this.nameRef.nativeElement.style.backgroundColor="red";
+    console.log(this.child1);
+       
+      }
   ngAfterViewChecked() {
-
+    
   }
   ngOnChanges(obj:SimpleChanges){
     alert(1);

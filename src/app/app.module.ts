@@ -11,6 +11,7 @@ import { MultiplierPipe } from './home/multiplier.pipe';
 import {StoreModule} from '@ngrx/store';
 import {customerReducer} from './home/customer-reducer';
 import { NgZoneDemoComponent } from './ng-zone-demo/ng-zone-demo.component';
+import { TestComponent } from './test/test.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { NgZoneDemoComponent } from './ng-zone-demo/ng-zone-demo.component';
     ChildComponent,
     MultiplierPipe,
     NgZoneDemoComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,

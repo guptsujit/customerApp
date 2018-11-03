@@ -5,10 +5,18 @@
   <input type="text" name="firstname2" [value]="firstname2" (input)="firstname2=$event.target.value.toUpperCase()">
    {{firstname2}}
 
-  <app-child [datafromparent]= "firstname" [datafromparent2]="userDetail">
+  <app-child [datafromparent]= "firstname" [datafromparent2]="userDetail" #child1>
     
     <div class="div1"> div 1 content</div><div class="div2">div 2 content</div>
   </app-child>
+  <app-test #child1>
+    
+    <div #contentChild1> div 2 content</div>
+    <div #contentChild1> div 2 content</div>
+   
+  </app-test>
+  <div #contentChild2> div 2 content</div>
+
   <input type="button" value="changeName" (click)="changename()">
   {{message}}  
   <input type="button" value="Count Number" (click)="countNumber()">

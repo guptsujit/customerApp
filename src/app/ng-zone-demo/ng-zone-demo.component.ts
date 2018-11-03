@@ -1,4 +1,5 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone,ViewChild,ViewChildren } from '@angular/core';
+
 
 @Component({
   selector: 'app-ng-zone-demo',
@@ -9,11 +10,14 @@ export class NgZoneDemoComponent implements OnInit {
   progress: number = 0;
   label: string;
   count: number = 0;
+
+
   constructor(private _ngZone: NgZone) {
 
   }
 
   ngOnInit() {
+
   }
 
   // Loop inside the Angular zone
